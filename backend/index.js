@@ -141,6 +141,34 @@ app.post("/drawticket",(req,res)=>{
   })
 
 })
+
+app.post('/lotterydetails', (req,res) => {
+  let sql = "select id, txtLotteryname, dtLotterydrawdate from tbllotterymaster";
+  con.query(sql, (err, result) => {
+      if(err) throw err;
+      console.log(result);
+      res.send(result);
+  })
+});
+
+app.post('/Price', (req,res) => {
+  let sql = "select id, txtCost from tblunit;";
+  con.query(sql, (err, result) => {
+      if(err) throw err;
+      console.log(result);
+      res.send(result);
+  })
+})
+
+app.post('/Numbers', (req,res) => {
+  let sql = "select id, txtFirstchoicenumber, txtSecondchoicenumber, txtThirdchoicenumber, txtFourthchoicenumber, txtFifthoicenumber from tblresultmaster;";
+  con.query(sql, (err, result) => {
+      if(err) throw err;
+      console.log(result);
+      res.send(result);
+  })
+})
+
 app.listen(8080, (err) => {
   if (err) throw err;
   console.log("Server running in port 8080");
