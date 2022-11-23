@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Navigation from './Navigation';
-import App from './components/Cartitems';
+import App from './components/Option';
 // import VerifyOTP from './pages/VerifyOTP';
 
 
@@ -9,6 +9,6 @@ import App from './components/Cartitems';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/>
+    <Navigation/>
   </React.StrictMode>
 );
