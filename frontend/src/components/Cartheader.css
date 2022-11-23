@@ -1,0 +1,26 @@
+.cartheader_container{
+    display: flex;
+    padding: 0px 15px;
+    position: relative;
+    justify-content: space-between;
+}
+.cartheader_label_sec h2{
+    font-family: sans-serif;
+    margin: 10px 0px;
+    color: #004690;
+}
+.cartheader_img_sec{
+    display: flex;
+    align-items: center;
+}
+.cartheaderimg1 img{
+    width: 50px;
+}
+.cartheaderimg2 img{
+    width: 40px;
+    margin-left: 5px;
+}
+.cartheaderimg3 img{
+    width: 40px;
+}
+
