@@ -1,0 +1,19 @@
+.Editheader_raw{
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+.Editheader_raw_btn{
+    width: 30%;
+}
+.Editheader_raw_btn button{
+    padding: 10px;
+    width: 100%;
+    background-color: rgba(165, 165, 165, 0.207);
+    border: none;
+}
+button:hover{
+    background-color: rgb(196, 86, 86);
+    color: #fff;
+}
