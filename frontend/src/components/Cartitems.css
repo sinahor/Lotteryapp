@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&family=EB+Garamond&display=swap');
+
+.component1{
+    width: 100%;
+    height: 100vh;
+
+}
+
+.row1{
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20px;
+    
+}
+
+.row1 label{
+    color: gray;
+    font-family: 'Comic Neue', cursive;; 
+    
+}
+.row1 .label1{
+    padding-left: 30px;
+    padding-right: 230px;
+    
+}
+.row1 .label2{
+    padding-right: 500px;
+    
+    
+}
+
+.row2{
+    display: flex;
+    flex-direction: row;
+    
+    padding-left: 30px;
+}
+
+.row2_img img{
+    width: 70%;
+    height: 14vh;
+    border-radius: 50px;
+    border: 1px solid rgb(0, 225, 255);
+
+}
+
+.row2_details{
+    display: flex;
+    flex-direction: column;
+    
+    padding-right: 45px;
+}
+
+.row3_details{
+    display: flex;
+    flex-direction: column;
+    
+    padding-right: 60px;
+}
+
+.row2_details label, .row3_details label{
+    font-weight: bold;
+    padding-bottom: 2px;
+}
+
+.row2_numbers{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(201, 195, 195, 0.658);
+    padding-right: 400px;
+    
+    
+}
+
+.row2_numbers label{
+    height: 2vh;
+    padding: 13px;
+    background-color: rgb(0, 162, 255);
+    margin-right: 5px;
+    border-radius: 10px;
+    font-family:'Comic Neue', cursive;;
+    font-weight: bold;
+    color: white;
+    
+}
+
+.row2_pricebuttons{
+    
+    display: flex;
+    flex-direction: row;
+    padding-right: 20px;
+
+}
+
+.row2_pricebuttons label{
+    width: 100%;
+    
+    padding-right: 20px;
+    font-weight: bold;
+    font-family: 'Comic Neue', cursive;;
+}
+
+.row2_pricebuttons button{
+    height: 20px;
+    border: none;
+    width: 20%;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.row2_pricebuttons img{
+    height: 20px;
+}
+
+.row3{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    padding-left: 164px;
+}
+
+.row3_numbers{
+    display: flex;
+    flex-direction: row;
+    
+    padding-right: 350px;
+    
+    
+}
+
+.row3_numbers label{
+    height: 2vh;
+    padding: 13px;
+    background-color: rgb(4, 0, 255);
+    margin-right: 5px;
+    border-radius: 10px;
+    font-family:'Comic Neue', cursive;;
+    font-weight: bold;
+    color: white;
+    
+}
+
+.row3_pricebuttons label{
+    width: 100%;
+    
+    padding-right: 30px;
+    font-weight: bold;
+    font-family: 'Comic Neue', cursive;;
+}
+
+.row3_pricebuttons img{
+    height: 20px;
+}
