@@ -1,4 +1,4 @@
-import "../styles/Lineselector.css";
+import "./Lineselector.css";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { TbArrowsShuffle } from "react-icons/tb";
