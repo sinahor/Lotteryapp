@@ -1,5 +1,5 @@
-import "../style/UserProfileedit.css";
-import profilepic from "../image/megan.png";
+import "./UserProfileedit.css";
+import profilepic from "../images/megan.png";
 export default function UserProfileedit() {
   return (
     <div className="UserProfileedit">

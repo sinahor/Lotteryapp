@@ -1,4 +1,4 @@
-import "../style/Linemessage.css";
+import "./Linemessage.css";
 export default function Linemessage(){
     return(
         <div className="Linemessage">

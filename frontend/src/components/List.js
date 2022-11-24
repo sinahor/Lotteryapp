@@ -1,4 +1,4 @@
-import "../style/list.css";
+import "./list.css";
 export default function list(){
     return(
         <div className="list">

@@ -1,4 +1,4 @@
-import "../style/Collapsetab.css";
+import "./Collapsetab.css";
 import { GrAddCircle } from "react-icons/gr";
 import Collapsible from "react-collapsible";
 export default function Collapsetab() {
