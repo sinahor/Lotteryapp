@@ -1,4 +1,4 @@
-import shield from './images/lockshield.jpg'
+import shield from '../images/lockshield.jpg'
 import './Checkoutbutton.css'
 export default function Checkoutbutton({Checkout}) {
 
