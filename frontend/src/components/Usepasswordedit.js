@@ -1,4 +1,4 @@
-import "../style/Usepasswordedit.css";
+import "./Usepasswordedit.css";
 import {BiHide} from "react-icons/bi";
 export default function Usepasswordedit() {
   return (
