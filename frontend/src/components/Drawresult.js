@@ -1,4 +1,4 @@
-import "../Styles/Drawresult.css";
+import "./Drawresult.css";
 import react, { useEffect, useState } from "react";
 import axios from "axios";
 export default function Drawresult() {
