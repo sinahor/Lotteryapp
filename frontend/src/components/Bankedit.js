@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
-import "../Styles/Bankedit.css";
+import "./Bankedit.css";
 import Collapsible from "react-collapsible";
 export default function Bankedits() {
   return (
