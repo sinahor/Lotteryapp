@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Navigation from './Navigation'
+// import Navigation from './Navigation/TicketSelector';
+import Navigation from './pages/TicketSelector';
+import App from './components/Option';
 // import VerifyOTP from './pages/VerifyOTP';
 
 
