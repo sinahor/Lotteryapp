@@ -8,7 +8,7 @@ export default function Cartitems() {
     const [lotterynamearray, SetLotterynamearray] = useState([]);
     
     useEffect(() => {
-        let url = "http://localhost:5000/lotterydetails";
+        let url = "http://localhost:8080/lotterydetails";
         let request = {};
         let header = {};
         axios.post(url, request, header)
@@ -22,7 +22,7 @@ export default function Cartitems() {
     },[])
     const [pricearray, SetPricearray] = useState([]);
     useEffect(() => {
-        let url = "http://localhost:5000/Price";
+        let url = "http://localhost:8080/Price";
         let request = {};
         let header = {};
         axios.post(url, request, header)
@@ -37,7 +37,7 @@ export default function Cartitems() {
 
     const [numberarray, SetNumberarray] = useState([]);
     useEffect(() => {
-        let url = "http://localhost:5000/Numbers";
+        let url = "http://localhost:8080/Numbers";
         let request = {};
         let header = {};
         axios.post(url, request, header)

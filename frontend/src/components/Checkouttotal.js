@@ -5,7 +5,7 @@ import { useState } from 'react';
 export default function Checkouttotal(){
     const [totalarray, SetTotalarray] = useState([]);
     useEffect(() => {
-        let url = "http://localhost:5000/Price";
+        let url = "http://localhost:8080/Price";
         let request = {};
         let header = {};
         axios.post(url, request, header)

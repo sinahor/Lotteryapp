@@ -8,10 +8,17 @@ export default function Checkout() {
   return (
     <>
       <Header />
+      <br></br>
+      <br></br>
+      <br></br>
       <CartHeader/>
+      <br></br>
+      <br></br>
+      <br></br>
       <Cartitems/>
-      <Checkoutbutton/>
       <CheckoutTotal/>
+      <Checkoutbutton/>
+      
       
       <Footer/>
     </>
