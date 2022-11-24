@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Navigation from './Navigation';
-import App from './components/Option';
+import Navigation from './Navigation'
 // import VerifyOTP from './pages/VerifyOTP';
 
 

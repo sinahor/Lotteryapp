@@ -1,6 +1,6 @@
-import "../style/winners.css";
+import "./winners.css";
 import axios from "axios";
-import pic from "../image/dad-img.png";
+import pic from "../images/dad-img.png";
 import { useEffect,useState } from "react";
 export default function Winners() {
   const[winner,setWinners]=useState("");
