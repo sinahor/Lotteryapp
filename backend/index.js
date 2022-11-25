@@ -169,6 +169,26 @@ app.post('/Numbers', (req,res) => {
   })
 })
 
+app.post("/lotterydrawresult", (req,res)=>{
+  var sql="select id, txtLotteryname, txtLotteryprize from tbllotterymaster;";
+  console.log(sql);
+  con.query(sql,function (err,result){
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+  })
+});
+
+app.post("/latestlotterydrawresult", (req,res)=>{
+  var sql="SELECT MAX(dtLotterydrawdate), txtLotteryname, txtFirstchoicenumber, txtSecondchoicenumber,txtThirdchoicenumber,txtFourthchoicenumber,txtFifthoicenumber FROM lotterydrums.tbllotterymaster join tblresultmaster on tblresultmaster.refLotterymaster=tbllotterymaster.id;";
+  console.log(sql);
+  con.query(sql,function (err,result){
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+  })
+});
+
 app.listen(8080, (err) => {
   if (err) throw err;
   console.log("Server running in port 8080");
