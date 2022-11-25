@@ -1,5 +1,5 @@
 import "./Drawresult.css";
-import react, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 export default function Drawresult() {
 
@@ -11,6 +11,7 @@ export default function Drawresult() {
   const yr = current.getFullYear();
 
   const[lotteryresult, setLotteryresult]=useState([]);
+  const[latestlotteryresult, setLatestLotteryresult]=useState([]);
 
   useEffect(()=>{
     let url="http://localhost:8080/lotterydrawresult";
@@ -20,7 +21,17 @@ export default function Drawresult() {
       setLotteryresult(res.data);
       console.log("lotteryresult",res.data);
     }).catch();
-  },[]);
+  
+
+  let url1="http://localhost:8080/latestlotterydrawresult";
+  let req1={};
+  let header1={};
+  axios.post(url1,req1,header1).then((res) => {
+    setLatestLotteryresult(res.data);
+    console.log("latestlotteryresult",res.data);
+  }).catch();
+
+},[]); 
 
   return (
     <div className="drawres_container">
@@ -41,7 +52,7 @@ export default function Drawresult() {
 
               <div className="drawres_body_lft_row">
                 <div className="drawres_body_sec_lft_row_header">
-                  <p>Raffle Id</p>
+                  <p>Lottery Name</p>
                   <p>Amount</p>
                 </div>
                 {lotteryresult.map((itm,index)=>{
@@ -63,27 +74,33 @@ export default function Drawresult() {
             </div>
           </div>
           <div className="drawres_body_sec_rgt">
+            
             <div className="drawres_body_sec_rgt_content">
               <div className="drawres_body_sec_header">
                 <h1>Latest Grand Draw Results</h1>
               </div>
-              <div className="drawres_body_sec_rgt_num">
+              {latestlotteryresult.map((itm,index)=>{
+              return(
+                <div className="drawres_body_sec_rgt_num">
                 <div className="drawres_rgt_numbers_div">
-                  <p>12</p>
+                  <p>{itm.txtFirstchoicenumber}</p>
                 </div>
                 <div className="drawres_rgt_numbers_div">
-                  <p>24</p>
+                  <p>{itm.txtSecondchoicenumber}</p>
                 </div>
                 <div className="drawres_rgt_numbers_div">
-                  <p>31</p>
+                  <p>{itm.txtThirdchoicenumber}</p>
                 </div>
                 <div className="drawres_rgt_numbers_div">
-                  <p>39</p>
+                  <p>{itm.txtFourthchoicenumber}</p>
                 </div>
                 <div className="drawres_rgt_numbers_div">
-                  <p>49</p>
+                  <p>{itm.txtFifthoicenumber}</p>
                 </div>
               </div>
+              )
+            })}
+              
               <div className="drawers_body_sec_rgt_row">
                 <div className="drawres_sec_rgt_row_div">
                   <div className="drawres_sec_rgt_row_inner_div">
