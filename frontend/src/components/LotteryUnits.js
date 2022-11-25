@@ -8,7 +8,8 @@ export default function LotteryUnits({time,lotterydetails }) {
       <div className="LotteryUnits_outer">
         <div className="LotteryUnits_col">
           {lotterydetails.map((itm,index)=>{ 
-            return<>
+            return
+            <>
             <div className="LotteryUnits_col_row">
             <button className="LotteryUnits_sell">
                      
@@ -16,7 +17,9 @@ export default function LotteryUnits({time,lotterydetails }) {
             </button>
           </div>
           <div className="LotteryUnits_col_row">
-            <button className="LotteryUnits_date">{itm.dtLotterydrawdate}</button>
+            <button className="LotteryUnits_date"> 
+            {itm.dtLotterydrawdate}
+             </button>
           </div>
           </>
           })}
