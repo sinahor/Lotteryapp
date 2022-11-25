@@ -1,8 +1,10 @@
 import "./Collapsetab.css";
 import { GrAddCircle } from "react-icons/gr";
 import Collapsible from "react-collapsible";
-import List from './List'
-export default function Collapsetab({ heading }) {
+import Footer from "./Footer";
+import Draw from "./Drawresult";
+import Bank from "./Bankedit";
+export default function Collapsetab({ showDraw, showFooter, showBank }) {
   return (
     <div className="collapsibletab">
       <div className="collapsibletab_raw">
@@ -10,15 +12,13 @@ export default function Collapsetab({ heading }) {
           trigger={
             <div className="collapsibletab_raw_icon">
               <GrAddCircle />
-              <label>{heading}</label>
+              <label>Collapsible header</label>
             </div>
           }
         >
-          
-          <List />
-          
-        
-          
+          {showFooter ? <Footer /> : <></>}
+          {showDraw ? <Draw /> : <></>}
+          {showBank ? <Bank /> : <></>}
         </Collapsible>
       </div>
     </div>
