@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Navigation from './components/Drawresult'
-// import VerifyOTP from './pages/VerifyOTP';
+import Navigation from './Navigation'
+
+
 
 
 
