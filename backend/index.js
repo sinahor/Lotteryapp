@@ -169,6 +169,16 @@ app.post('/Numbers', (req,res) => {
   })
 })
 
+app.post('/Lotterylist',(req,res) => {
+  let id=req.body.id;
+  let sql="SELECT lm.txtLotteryname , count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
+  con.query(sql, (err, result) => {
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
+})
+})
+
 app.listen(8080, (err) => {
   if (err) throw err;
   console.log("Server running in port 8080");
