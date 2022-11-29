@@ -36,6 +36,7 @@ export default function Lotterylist() {
         <>
             <div className="Lotterylist">
                 <table>
+                    
                     <thead>
                         <tr className="lottlist_tbl_row1">
                             <th className="lottlist_tbl_row1_col1">Lottery</th>
@@ -44,7 +45,7 @@ export default function Lotterylist() {
                     </thead>
                     {array.map((item, indx) =>{
                         return(
-                    <tbody>
+                    <tbody  key={indx}>
                             <tr className="lottlist_tbl_row2">
                             <td>{item.Lotterymaster}</td>
                             <td>{item.Unitsold}</td>
