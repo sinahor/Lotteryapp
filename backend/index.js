@@ -170,8 +170,10 @@ app.post('/Numbers', (req,res) => {
 })
 
 app.post('/Lotterylist',(req,res) => {
-  let id=req.body.id;
-  let sql="SELECT lm.txtLotteryname , count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
+  // let id=req.body.id;
+  // let sql="SELECT lm.txtLotteryname , count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
+  let sql="SELECT lm.txtLotteryname AS Lotterymaster, COUNT(ut.id)  AS Unitsold FROM tbllotterymaster lm JOIN tblunit ut ON ut.refLotterymaster = lm.id GROUP BY lm.txtLotteryname HAVING Unitsold > 1";
+
   con.query(sql, (err, result) => {
     if(err) throw err;
     console.log(result);

@@ -8,7 +8,8 @@ export default function Lotterylist() {
 
     useEffect(() => {
         const url = 'http://localhost:8080/Lotterylist'
-        const request = {id:3}
+        // const request = {id:1}
+        const request = {}
         const header = {}
 
         axios.post(url, request, header)
@@ -41,18 +42,19 @@ export default function Lotterylist() {
                             <th className="lottlist_tbl_row1_col2">Unit Sold</th>
                         </tr>
                     </thead>
-
-                    <tbody> {array.map((item, indx) =>{
+                    {array.map((item, indx) =>{
                         return(
+                    <tbody>
                             <tr className="lottlist_tbl_row2">
-                            <td>{item.txtLotteryname}</td>
-                            <td>{item.units}</td>
+                            <td>{item.Lotterymaster}</td>
+                            <td>{item.Unitsold}</td>
                         </tr>
-                        )
+                       </tbody>
+                       )
                     } 
                         
 
-                    )}</tbody>
+                    )}
 
                 </table>
             </div>
