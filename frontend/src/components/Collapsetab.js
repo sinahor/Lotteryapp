@@ -1,7 +1,10 @@
 import "./Collapsetab.css";
 import { GrAddCircle } from "react-icons/gr";
 import Collapsible from "react-collapsible";
-export default function Collapsetab() {
+import Footer from "./Footer";
+import Draw from "./Drawresult";
+import Bank from "./Bankedit";
+export default function Collapsetab({ showDraw, showFooter, showBank }) {
   return (
     <div className="collapsibletab">
       <div className="collapsibletab_raw">
@@ -13,10 +16,9 @@ export default function Collapsetab() {
             </div>
           }
         >
-          <label>
-            Collapsed content is content that is hidden by tabs, accordions,
-            click-to-expand buttons, or display:none styling.
-          </label>
+          {showFooter ? <Footer /> : <></>}
+          {showDraw ? <Draw /> : <></>}
+          {showBank ? <Bank /> : <></>}
         </Collapsible>
       </div>
     </div>

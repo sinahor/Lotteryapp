@@ -1,7 +1,7 @@
 import { useTimer } from "react-timer-hook";
 import "../components/Timer.css";
 function Timer({ expiryTimestamp }) {
-  const time = new Date("2022-11-10");
+  const time = new Date("2022-12-12");
 
   const {
     seconds,
@@ -45,7 +45,7 @@ function Timer({ expiryTimestamp }) {
   );
 }
 export default function MyTimer() {
-  const time = new Date();
+  const time = new Date("2022-12-12");
 
   return (
     <div>
