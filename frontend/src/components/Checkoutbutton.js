@@ -1,6 +1,6 @@
 import shield from '../images/lockshield.jpg'
 import './Checkoutbutton.css'
-export default function Checkoutbutton({Checkout}) {
+export default function Checkoutbutton({Checkout,chkout}) {
 
     return (
         <div className="component3">
@@ -21,7 +21,7 @@ export default function Checkoutbutton({Checkout}) {
                     </div>
                 </div>
                 <div className='row_secured_button'>
-                    <button>{Checkout}</button>
+                    <button onClick={chkout}>{Checkout}</button>
                 </div>
             </div>
         </div>

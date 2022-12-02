@@ -2,9 +2,9 @@ import "./Lineselector.css";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { TbArrowsShuffle } from "react-icons/tb";
-export default function Lineselector() {
+export default function Lineselector({ label1 }) {
     const[count,setCount]=useState(0);
- 
+    const [temparr, setTemparr] = useState([]);
     const [arr, setArr] = useState(
 
         [{ value: 1, selected: false }, { value: 2, selected: false }, { value: 3, selected: false }, { value: 4, selected: false },
@@ -23,29 +23,78 @@ export default function Lineselector() {
 
 
     const handleClick = (itm, indx) => {
-        let temp = [...arr];
-        // var count;
-        temp[indx].selected = temp[indx].selected ? false : true; 
-        
-        setArr(temp)
+        const temp = [...arr];
 
-       
-        console.log(temp)
-        // console.log(count)
-    }
-   for(var i=0;i<=49;i++)
-   {
-   
-    if(arr.selected==true)
-    // alert("hi")
-    setCount(count+1)
-    // console.log(c)
-   }
+        temp[indx].selected= temp[indx].selected
+          ? false
+          : true;
     
+        if (count < 5) {
+          if (temp[indx].selected == true) {
+            setCount(count + 1);
+          } else {
+            setCount(count - 1);
+          }
+        }
+    
+        if (count == 5) {
+          temp[indx].selected = temp[indx].selected
+            ? false
+            : true;
+        }
+    
+        console.log(temp);
+      };
+      
+    
+   const shuffle = () => {
+    let ta = [];
+    let test = [];
+    let randomnum = [];
+    let r;
+    console.log(test);
+    const randomarray = [];
+    while (randomnum.length < 5) {
+      r = Math.floor(Math.random() * 49) + 1;
+      if (randomnum.indexOf(r) == -1) {
+        randomnum.push(r);
+      }
+      ta.push({ value: r, selected: true });
+      console.log(ta);
+    }
+    // while (ta.length < 5) {
+    //   r = Math.floor(Math.random() * 49) + 1;
+    //   if(ta.indexOf(r) === -1)
+    //   ta.push(r);
+    //   const uniqunum=ta.filter(element=>{
+    //     const isdupli=ta.includes(element)
+    //     if(!isdupli){
+    //       ta.push({ value: r, selected: true });
+    //     }
+    //   })
 
+    // }
+
+    const tempa = [...arr];
+    for (const eleent of tempa) {
+      eleent.selected = false;
+    }
+    for (const eleent of tempa) {
+      for (const elt of ta) {
+        if (eleent.value == elt.value) {
+          eleent.selected = true;
+          test.push({ value: eleent.value, selected: true });
+        }
+      }
+    }
+
+    setTemparr(tempa);
+
+    // console.log(test);
+  };
     return (
         <div className="Lineselector">
-            <div className="Header">LINE 1</div>
+            <div className="Header">{ label1 }</div>
             <div className="Middle">
 
                 <>
@@ -72,7 +121,7 @@ export default function Lineselector() {
 
             </div>
             <div className="Footer">
-                <button> <TbArrowsShuffle /></button>
+                <button> <TbArrowsShuffle onClick={shuffle}  /></button>
                 <button> <AiOutlineClose /></button>
 
 
