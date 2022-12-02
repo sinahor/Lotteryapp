@@ -12,6 +12,7 @@ var con = mysql.createConnection({
   password: "password",
   database: "lotterydrums",
 });
+
 con.connect(function (err) {
   if (err) throw err;
   console.log("Connected");
@@ -180,6 +181,34 @@ app.post('/Lotterylist',(req,res) => {
     res.send(result);
 })
 })
+
+app.post("/addnewbank", (req,res)=>{
+  let acctowner=req.body.acctowner;
+  let accno=req.body.accno;
+  let bankname=req.body.bankname;
+  let branch=req.body.branch;
+  let ifsc=req.body.ifsc;
+  let buserid=req.body.buserid;
+  var sql="insert into tblbankdetails (txtAccountowner, txtAccountnumber,txtBankname, txtBranch, txtIfsc, refUser) values ('"+acctowner+"', '"+accno+"', '"+bankname+"', '"+branch+"', '"+ifsc+"', '"+buserid+"');"
+  console.log(sql);
+  con.query(sql,function (err,result){
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+  })
+});
+
+app.post("/viewbank", (req,res)=>{
+  var sql="SELECT txtBankname FROM lotterydrums.tblbankdetails where refUser=1;"
+  console.log(sql);
+  con.query(sql,function (err,result){
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+  })
+});
+
+
 
 app.listen(8080, (err) => {
   if (err) throw err;
