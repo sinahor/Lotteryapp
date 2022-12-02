@@ -2,8 +2,9 @@ import "./HeaderUser.css";
 import lottery_icons from "../images/drum.jpg";
 import { FaOpencart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import {BiUserCircle}  from "react-icons/bi"
 // import user_logo from '../image/user_logo.png';
-export default function Header({label1,label2,label3,label4,label5,Loginclick,cartclick,headerclick}) {
+export default function Header({label1,label2,label3,label4,label5,Loginclick,cartclick,headerclick,buynowclick}) {
   // const navigate = useNavigate();
   // const login = () => {
   //   navigate("/Login");
@@ -24,7 +25,7 @@ export default function Header({label1,label2,label3,label4,label5,Loginclick,ca
 
         <div className="headerUser_menu">
           <div className="headerUser_menu_col">
-            <label>{label1}</label>
+            <label onClick={buynowclick}>{label1}</label>
           </div>
           <div className="headerUser_menu_col">
             
@@ -37,12 +38,21 @@ export default function Header({label1,label2,label3,label4,label5,Loginclick,ca
         <div></div>
         <div className="headerUser_cart">
           <div className="headerUser_cart_colleft" >
-            <FaOpencart size="2rem" color="white"/>
+            <FaOpencart size="2rem" />
           </div>
           <div className="headerUser_cart_colright">
             <label onClick={cartclick}>{label4}</label>
             <label>{label5}</label>
           </div>
+          <div className="dropdown">
+          <div className="headerUser_user">
+          <BiUserCircle size="2rem"/>
+          <label>user</label>
+          </div>
+        <div className="dropdown-content">
+          <label>Logout</label>
+        </div>
+      </div>
         </div>
       </div>
     </>

@@ -34,9 +34,12 @@ function HomePage() {
   const signup=()=>{
     navigate("/Signup")
   }
+  const buyticket=()=>{
+    navigate("/TicketSelector")
+  }
   return (
     <div className="lottery_outer">
-      <div className='lottery_headerUser'> <HeaderUser label1={"BuyNow"} label2={"Log In"}  label3={"Register"}  label4={"My Cart"} label5={"Amount"} Loginclick={LogIn} cartclick={""} headerclick={signup}/></div>
+      <div className='lottery_headerUser'> <HeaderUser label1={"BuyNow"} label2={"Log In"}  label3={"Register"}  label4={"My Cart"} label5={"Amount"} Loginclick={LogIn} cartclick={""} headerclick={signup} buynowclick={buyticket}/></div>
       {/* <div className='lottery_headerOut'> <HeaderLogout /></div> */}
       <div className='lottery_menu'><Menu /></div>
       {/* <div className='lottery_betterwin'><Betterwin /></div> */}
