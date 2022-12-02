@@ -1,10 +1,16 @@
+.Animation_outer{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;background-color: transparent;
+}
 .carousel {
-    width: 600px;
-    height: 380px;
-    margin: auto;
+    /* width: 80%; */
+    height: 100%;
+    margin: auto;background-color: transparent;
   }
   
-  .carousel-control-prev {
+  /* .carousel-control-prev {
     height: 300px;
   }
   .carousel-control-next {
@@ -23,4 +29,4 @@
   }
   .carousel:hover .carousel-control-next-icon {
     visibility: visible;
-  }
+  } */

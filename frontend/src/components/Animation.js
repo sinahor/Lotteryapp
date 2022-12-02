@@ -47,7 +47,7 @@ export default function Slider5() {
 
 
   return (
-    <div className="App">
+    <div className="Animation_outer">
       <Carousel>
         {videoProperties.map((itm, indx) => {
           return (
@@ -68,7 +68,7 @@ export default function Slider5() {
               // }}
 
               /> */}
-              <video width="750" height="400" controls  autoplay="autoplay" loop="true" autoPlay muted>
+              <video width="100%" height="400" controls  autoplay="autoplay" loop="true" autoPlay muted>
                 <source src={itm.loc} type="video/mp4" />
                 Your browser does not support HTML video.
               </video>
