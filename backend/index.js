@@ -180,7 +180,19 @@ app.post('/Lotterylist',(req,res) => {
     console.log(result);
     res.send(result);
 })
+});
+
+app.post('/Unitsold',(req,res) => {
+  // let id=req.body.id;
+  // let sql="SELECT lm.txtLotteryname ,lm.dtLotterydrawdate as DrawDate, count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
+  let sql="SELECT lm.txtLotteryname AS Lotterymaster, lm.dtLotterydrawdate as DrawDate,COUNT(ut.id)  AS Unitsold FROM tbllotterymaster lm JOIN tblunit ut ON ut.refLotterymaster = lm.id GROUP BY lm.txtLotteryname HAVING Unitsold > 1";
+
+  con.query(sql, (err, result) => {
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
 })
+});
 
 app.post("/addnewbank", (req,res)=>{
   let acctowner=req.body.acctowner;
