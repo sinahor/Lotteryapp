@@ -3,16 +3,16 @@ import './Checkoutbutton.css'
 export default function Checkoutbutton({Checkout,chkout}) {
 
     return (
-        <div className="component3">
-            <div className="row">
-                <div className="row_back">
+        <div className="Checkoutbutton_component3">
+            <div className="Checkoutbutton_component3_row">
+                <div className="Checkoutbutton_component3_row_back">
                     <button>Back</button>
                 </div>
-                <div className="row_secured">
-                    <div className='row_secured_img'>
+                <div className="Checkoutbutton_component3_row_secured">
+                    <div className='Checkoutbutton_component3_row_secured_img'>
                         <img src={shield} />
                     </div>
-                    <div className='row_secured_labels'>
+                    <div className='Checkoutbutton_component3_row_secured_labels'>
                         
                         <label>100% SECURED</label>
                         <label>SSL 256 BIT</label>
@@ -20,7 +20,7 @@ export default function Checkoutbutton({Checkout,chkout}) {
 
                     </div>
                 </div>
-                <div className='row_secured_button'>
+                <div className='Checkoutbutton_component3_row_secured_button'>
                     <button onClick={chkout}>{Checkout}</button>
                 </div>
             </div>
