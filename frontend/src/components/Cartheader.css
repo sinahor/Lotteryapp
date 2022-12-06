@@ -1,26 +1,35 @@
 .cartheader_container{
     display: flex;
-    padding: 0px 15px;
+    width: 93%;
     position: relative;
     justify-content: space-between;
+    margin-left: 18px;
 }
 .cartheader_label_sec h2{
     font-family: sans-serif;
     margin: 10px 0px;
-    color: #004690;
+    color: black;
+    font-size:x-large;
 }
 .cartheader_img_sec{
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    width: 21%;
 }
 .cartheaderimg1 img{
-    width: 50px;
+    width: 65px;
+    
 }
 .cartheaderimg2 img{
-    width: 40px;
-    margin-left: 5px;
+    width: 45px;
+    margin-left: 19px;
+    
 }
 .cartheaderimg3 img{
-    width: 40px;
+    width: 70px;
+    margin-left: 7px;
+    
 }
 
