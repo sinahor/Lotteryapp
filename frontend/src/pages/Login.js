@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Googlelogin from "../components/Googlelogin";
 function Login() {
     const navigate= useNavigate();
   const [username, setUsername] = useState("");
@@ -46,6 +46,11 @@ function Login() {
     setPassword(e.target.value);
     console.log("passwordis ",e);
   };
+  const glogin=()=>{
+    <Googlelogin/>
+    console.log("hi")
+   
+  }
 
   return (
     <div className="login_outer">
@@ -105,7 +110,7 @@ function Login() {
               <div className="login_form_row7_col"></div>
             </div>
             <div className="login_form_row8">
-              <button>
+              <button  onClick={login}>
                 <FcGoogle
                   style={{
                     width: 20,

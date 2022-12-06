@@ -12,6 +12,7 @@ var con = mysql.createConnection({
   password: "password",
   database: "lotterydrums",
 });
+
 con.connect(function (err) {
   if (err) throw err;
   console.log("Connected");
@@ -169,8 +170,38 @@ app.post('/Numbers', (req,res) => {
   })
 })
 
-app.post("/lotterydrawresult", (req,res)=>{
-  var sql="select id, txtLotteryname, txtLotteryprize from tbllotterymaster;";
+app.post('/Lotterylist',(req,res) => {
+  // let id=req.body.id;
+  // let sql="SELECT lm.txtLotteryname , count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
+  let sql="SELECT lm.txtLotteryname AS Lotterymaster, COUNT(ut.id)  AS Unitsold FROM tbllotterymaster lm JOIN tblunit ut ON ut.refLotterymaster = lm.id GROUP BY lm.txtLotteryname HAVING Unitsold > 1";
+
+  con.query(sql, (err, result) => {
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
+})
+});
+
+app.post('/Unitsold',(req,res) => {
+  // let id=req.body.id;
+  // let sql="SELECT lm.txtLotteryname ,lm.dtLotterydrawdate as DrawDate, count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
+  let sql="SELECT lm.txtLotteryname AS Lotterymaster, lm.dtLotterydrawdate as DrawDate,COUNT(ut.id)  AS Unitsold FROM tbllotterymaster lm JOIN tblunit ut ON ut.refLotterymaster = lm.id GROUP BY lm.txtLotteryname HAVING Unitsold > 1";
+
+  con.query(sql, (err, result) => {
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
+})
+});
+
+app.post("/addnewbank", (req,res)=>{
+  let acctowner=req.body.acctowner;
+  let accno=req.body.accno;
+  let bankname=req.body.bankname;
+  let branch=req.body.branch;
+  let ifsc=req.body.ifsc;
+  let buserid=req.body.buserid;
+  var sql="insert into tblbankdetails (txtAccountowner, txtAccountnumber,txtBankname, txtBranch, txtIfsc, refUser) values ('"+acctowner+"', '"+accno+"', '"+bankname+"', '"+branch+"', '"+ifsc+"', '"+buserid+"');"
   console.log(sql);
   con.query(sql,function (err,result){
       if (err) throw err;
@@ -179,8 +210,8 @@ app.post("/lotterydrawresult", (req,res)=>{
   })
 });
 
-app.post("/latestlotterydrawresult", (req,res)=>{
-  var sql="SELECT MAX(dtLotterydrawdate), txtLotteryname, txtFirstchoicenumber, txtSecondchoicenumber,txtThirdchoicenumber,txtFourthchoicenumber,txtFifthoicenumber FROM lotterydrums.tbllotterymaster join tblresultmaster on tblresultmaster.refLotterymaster=tbllotterymaster.id;";
+app.post("/viewbank", (req,res)=>{
+  var sql="SELECT txtBankname FROM lotterydrums.tblbankdetails where refUser=1;"
   console.log(sql);
   con.query(sql,function (err,result){
       if (err) throw err;
@@ -188,6 +219,8 @@ app.post("/latestlotterydrawresult", (req,res)=>{
       res.send(result);
   })
 });
+
+
 
 app.listen(8080, (err) => {
   if (err) throw err;
