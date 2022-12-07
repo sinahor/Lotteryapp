@@ -7,20 +7,16 @@ import CheckoutTotal from '../components/Checkouttotal';
 export default function Checkout() {
   return (
     <>
-      <Header />
-      <br></br>
-      <br></br>
-      <br></br>
-      <CartHeader/>
-      <br></br>
-      <br></br>
-      <br></br>
-      <Cartitems/>
+    <div className="Checkout_Main">
+      <div className="Checkout_header"><Header /></div>
+            <div></div><CartHeader/>
+            <Cartitems/>
       <CheckoutTotal/>
-      <Checkoutbutton/>
+      <Checkoutbutton Checkout={Checkout}/>
       
       
       <Footer/>
+      </div>
     </>
   );
 }

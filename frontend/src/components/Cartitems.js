@@ -8,7 +8,7 @@ export default function Cartitems() {
   const [array, Setarray] = useState([]);
 
   useEffect(() => {
-    let url = "http://localhost:8080/lotterydetails";
+    let url = "http://localhost:8080/unitcheckout";
     let request = {};
     let header = {};
     axios
@@ -22,7 +22,7 @@ export default function Cartitems() {
       });
   }, []);
 const handleDeleteClick=(id)=>{
-  let url = "http://localhost:8080/Delete";
+  let url = "http://localhost:8080/unitdelete";
   let request = {id:id};
   let header = {};
   axios

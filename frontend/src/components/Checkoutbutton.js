@@ -8,7 +8,7 @@ export default function Checkoutbutton({Checkout,chkout}) {
                 <div className="Checkoutbutton_component3_row_back">
                     <button>Back</button>
                 </div>
-                <div className="Checkoutbutton_component3_row_secured">
+                {/* <div className="Checkoutbutton_component3_row_secured">
                     <div className='Checkoutbutton_component3_row_secured_img'>
                         <img src={shield} />
                     </div>
@@ -18,8 +18,8 @@ export default function Checkoutbutton({Checkout,chkout}) {
                         <label>SSL 256 BIT</label>
                         
 
-                    </div>
-                </div>
+                    </div> */}
+                {/* </div> */}
                 <div className='Checkoutbutton_component3_row_secured_button'>
                     <button onClick={chkout}>{Checkout}</button>
                 </div>
