@@ -1,44 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&family=EB+Garamond&display=swap');
 
-.component1{
+.Cartitems_component1{
     width: 100%;
-    height: 60vh;
-
+    height: 25vh;
+    border-bottom: 1px solid rgba(201, 195, 195, 0.658);
 }
 
-.row1{
+.Cartitems_component1_row1{
     height: 5vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding-bottom: 20px;
+    padding-left: 20px;
+    border-bottom: 1px solid rgba(201, 195, 195, 0.658);
     
 }
 
-.row1 label{
+.Cartitems_component1_row1 label{
     color: gray;
-    font-family: 'Comic Neue', cursive;; 
+    font-family: 'Comic Neue', cursive;;
+    font-size: 17px; 
     
 }
-.row1 .label1{
+.Cartitems_component1_row1 .label1{
     padding-left: 30px;
-    padding-right: 230px;
+    width: 30%;
     
 }
-.row1 .label2{
-    padding-right: 500px;
+.Cartitems_component1_row1 .label2{
+    width: 50%;
+    
     
     
 }
 
-.row2{
+.Cartitems_component1_row2{
     display: flex;
     flex-direction: row;
+    padding-top: 20px;
+    padding-left: 50px;
     
-    padding-left: 30px;
 }
 
-.row2_img img{
+.Cartitems_component1_row2_img img{
     width: 70%;
     height: 14vh;
     border-radius: 50px;
@@ -46,35 +51,34 @@
 
 }
 
-.row2_details{
+.Cartitems_component1_row2_details{
     display: flex;
     flex-direction: column;
     
-    padding-right: 45px;
+    width: 18%;
 }
 
-.row3_details{
+.Cartitems_component1_row3_details{
     display: flex;
     flex-direction: column;
     
     padding-right: 60px;
 }
 
-.row2_details label, .row3_details label{
+.Cartitems_component1_row2_details label, .row3_details label{
     font-weight: bold;
     padding-bottom: 2px;
 }
 
-.row2_numbers{
+.Cartitems_component1_row2_numbers{
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid rgba(201, 195, 195, 0.658);
-    padding-right: 400px;
+    width: 52%;
     
     
 }
 
-.row2_numbers label{
+.Cartitems_component1_row2_numbers label{
     height: 2vh;
     padding: 18px;
     background-color: rgb(0, 162, 255);
@@ -89,7 +93,7 @@
     
 }
 
-.row2_pricebuttons{
+.Cartitems_component1_row2_pricebuttons{
     
     display: flex;
     flex-direction: row;
@@ -97,7 +101,7 @@
 
 }
 
-.row2_pricebuttons label{
+.Cartitems_component1_row2_pricebuttons label{
     width: 100%;
     
     padding-right: 20px;
@@ -105,7 +109,7 @@
     font-family: 'Comic Neue', cursive;;
 }
 
-.row2_pricebuttons button{
+.Cartitems_component1_row2_pricebuttons button{
     height: 20px;
     border: none;
     width: 20%;
@@ -113,18 +117,20 @@
     margin-right: 10px;
 }
 
-.row2_pricebuttons img{
+.Cartitems_component1_row2_pricebuttons img{
     height: 20px;
 }
 
-.row3{
+.Cartitems_component1_row3{
     margin-top: 30px;
     display: flex;
     flex-direction: row;
     padding-left: 164px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(201, 195, 195, 0.658);
 }
 
-.row3_numbers{
+.Cartitems_component1_row3_numbers{
     display: flex;
     flex-direction: row;
     
@@ -133,7 +139,7 @@
     
 }
 
-.row3_numbers label{
+.Cartitems_component1_row3_numbers label{
     height: 2vh;
     padding: 17px;
     background-color: rgb(4, 0, 255);
@@ -147,7 +153,7 @@
     
 }
 
-.row3_pricebuttons label{
+.Cartitems_component1_row3_pricebuttons label{
     width: 100%;
     
     padding-right: 30px;
@@ -155,6 +161,6 @@
     font-family: 'Comic Neue', cursive;;
 }
 
-.row3_pricebuttons img{
+.Cartitems_component1_row3_pricebuttons img{
     height: 20px;
 }
