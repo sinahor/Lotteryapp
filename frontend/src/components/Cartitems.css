@@ -102,7 +102,91 @@
   color: gray;
   font-weight: 600;
 }
-.Cartitems_row2_col3 button:hover{
 
-  color: black;
+
+.Cartitems_component1_row2_numbers label{
+    height: 2vh;
+    padding: 18px;
+    background-color: rgb(0, 162, 255);
+    margin-right: 5px;
+    border-radius: 12px;
+    font-family:'Comic Neue', cursive;;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+.Cartitems_component1_row2_pricebuttons{
+    
+    display: flex;
+    flex-direction: row;
+    padding-right: 20px;
+
+}
+
+.Cartitems_component1_row2_pricebuttons label{
+    width: 100%;
+    
+    padding-right: 20px;
+    font-weight: bold;
+    font-family: 'Comic Neue', cursive;;
+}
+
+.Cartitems_component1_row2_pricebuttons button{
+    height: 20px;
+    border: none;
+    width: 20%;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.Cartitems_component1_row2_pricebuttons img{
+    height: 20px;
+}
+
+.Cartitems_component1_row3{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    padding-left: 164px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(201, 195, 195, 0.658);
+}
+
+.Cartitems_component1_row3_numbers{
+    display: flex;
+    flex-direction: row;
+    
+    padding-right: 350px;
+    
+    
+}
+
+.Cartitems_component1_row3_numbers label{
+    height: 2vh;
+    padding: 17px;
+    background-color: rgb(4, 0, 255);
+    margin-right: 5px;
+    border-radius: 10px;
+    font-family:'Comic Neue', cursive;;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    
+}
+
+.Cartitems_component1_row3_pricebuttons label{
+    width: 100%;
+    
+    padding-right: 30px;
+    font-weight: bold;
+    font-family: 'Comic Neue', cursive;;
+}
+
+.Cartitems_component1_row3_pricebuttons img{
+    height: 20px;
 }

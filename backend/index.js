@@ -12,6 +12,7 @@ var con = mysql.createConnection({
   password: "password",
   database: "lotterydrums",
 });
+
 con.connect(function (err) {
   if (err) throw err;
   console.log("Connected");
@@ -141,7 +142,7 @@ app.post("/drawticket", (req, res) => {
   });
 });
 
-app.post("/lotterydetails", (req, res) => {
+app.post("/unitcheckout", (req, res) => {
   let sql =
     "SELECT tblunit.id as id ,tbllotterymaster.txtLotteryname as Lotteryname,DATE_FORMAT(tbllotterymaster.dtLotterydrawdate,'%M- %d-%Y')as Drawdate,tblunit.txtFirstchoicenumber as Firstnumber,tblunit.txtSecondchoicenumber as Secondnumber,tblunit.txtThirdchoicenumber as Thirdnumber,tblunit.txtFourthchoicenumber as Fourthnumber,tblunit.txtFifthoicenumber as Fifthnumber,tbllotterymaster.txtCost as Price FROM tbllotterymaster JOIN tblunit on tbllotterymaster.id=tblunit.refLotterymaster JOIN tblusers on tblusers.id=tblunit.refUser where tblusers.id=1 and tblunit.txtDeleteflag=0";
   con.query(sql, (err, result) => {
@@ -151,7 +152,60 @@ app.post("/lotterydetails", (req, res) => {
   });
 });
 
-app.post("/Delete", (req, res) => {
+app.post("/Unitsold", (req, res) => {
+  // let id=req.body.id;
+  // let sql="SELECT lm.txtLotteryname ,lm.dtLotterydrawdate as DrawDate, count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
+  let sql =
+    "SELECT lm.txtLotteryname AS Lotterymaster, lm.dtLotterydrawdate as DrawDate,COUNT(ut.id)  AS Unitsold FROM tbllotterymaster lm JOIN tblunit ut ON ut.refLotterymaster = lm.id GROUP BY lm.txtLotteryname HAVING Unitsold > 1";
+
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
+app.post("/addnewbank", (req, res) => {
+  let acctowner = req.body.acctowner;
+  let accno = req.body.accno;
+  let bankname = req.body.bankname;
+  let branch = req.body.branch;
+  let ifsc = req.body.ifsc;
+  let buserid = req.body.buserid;
+  var sql =
+    "insert into tblbankdetails (txtAccountowner, txtAccountnumber,txtBankname, txtBranch, txtIfsc, refUser) values ('" +
+    acctowner +
+    "', '" +
+    accno +
+    "', '" +
+    bankname +
+    "', '" +
+    branch +
+    "', '" +
+    ifsc +
+    "', '" +
+    buserid +
+    "');";
+  console.log(sql);
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
+app.post("/viewbank", (req, res) => {
+  var sql =
+    "SELECT txtBankname FROM lotterydrums.tblbankdetails where refUser=1;";
+  console.log(sql);
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
+app.post("/unitdelete", (req, res) => {
   let sql = "UPDATE tblunit SET txtDeleteflag=1 where id=" + req.body.id + ";";
   con.query(sql, (err, result) => {
     if (err) throw err;
@@ -160,15 +214,6 @@ app.post("/Delete", (req, res) => {
   });
 });
 
-// app.post("/Numbers", (req, res) => {
-//   let sql =
-//     "select id, txtFirstchoicenumber, txtSecondchoicenumber, txtThirdchoicenumber, txtFourthchoicenumber, txtFifthoicenumber from tblresultmaster;";
-//   con.query(sql, (err, result) => {
-//     if (err) throw err;
-//     console.log(result);
-//     res.send(result);
-//   });
-// });
 
 app.post("/Lotterylist", (req, res) => {
   // let id=req.body.id;
@@ -182,7 +227,6 @@ app.post("/Lotterylist", (req, res) => {
     res.send(result);
   });
 });
-
 app.listen(8080, (err) => {
   if (err) throw err;
   console.log("Server running in port 8080");
