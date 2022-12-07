@@ -125,61 +125,63 @@ app.post("/verify", (req, res) => {
   });
 });
 
-app.post("/confirmuser",(req,res)=>{
-    let id=req.body.id;
-    let sql="update tblusers set txtDeleteflag=1 where id='"+id+"';";
-    con.query(sql,(err,result)=>{
-        res.send(result)
-    })
-})
-
-
-app.post("/drawticket",(req,res)=>{
-  let sql="SELECT txtLotteryname,dtLotterydrawdate FROM tbllotterymaster WHERE dtLotterydrawdate > NOW()  ORDER BY dtLotterydrawdate LIMIT 1; "
-  con.query(sql,(err,result)=>{
-    res.send(result)
-  })
-
-})
-
-app.post('/lotterydetails', (req,res) => {
-  let sql = "select id, txtLotteryname, dtLotterydrawdate from tbllotterymaster";
+app.post("/confirmuser", (req, res) => {
+  let id = req.body.id;
+  let sql = "update tblusers set txtDeleteflag=1 where id='" + id + "';";
   con.query(sql, (err, result) => {
-      if(err) throw err;
-      console.log(result);
-      res.send(result);
-  })
+    res.send(result);
+  });
 });
 
-app.post('/Price', (req,res) => {
-  let sql = "select id, txtCost from tblunit;";
+app.post("/drawticket", (req, res) => {
+  let sql =
+    "SELECT txtLotteryname,dtLotterydrawdate FROM tbllotterymaster WHERE dtLotterydrawdate > NOW()  ORDER BY dtLotterydrawdate LIMIT 1; ";
   con.query(sql, (err, result) => {
-      if(err) throw err;
-      console.log(result);
-      res.send(result);
-  })
-})
+    res.send(result);
+  });
+});
 
-app.post('/Numbers', (req,res) => {
-  let sql = "select id, txtFirstchoicenumber, txtSecondchoicenumber, txtThirdchoicenumber, txtFourthchoicenumber, txtFifthoicenumber from tblresultmaster;";
+app.post("/lotterydetails", (req, res) => {
+  let sql =
+    "SELECT tblunit.id as id ,tbllotterymaster.txtLotteryname as Lotteryname,DATE_FORMAT(tbllotterymaster.dtLotterydrawdate,'%M- %d-%Y')as Drawdate,tblunit.txtFirstchoicenumber as Firstnumber,tblunit.txtSecondchoicenumber as Secondnumber,tblunit.txtThirdchoicenumber as Thirdnumber,tblunit.txtFourthchoicenumber as Fourthnumber,tblunit.txtFifthoicenumber as Fifthnumber,tbllotterymaster.txtCost as Price FROM tbllotterymaster JOIN tblunit on tbllotterymaster.id=tblunit.refLotterymaster JOIN tblusers on tblusers.id=tblunit.refUser where tblusers.id=1 and tblunit.txtDeleteflag=0";
   con.query(sql, (err, result) => {
-      if(err) throw err;
-      console.log(result);
-      res.send(result);
-  })
-})
-
-app.post('/Lotterylist',(req,res) => {
-  // let id=req.body.id;
-  // let sql="SELECT lm.txtLotteryname , count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
-  let sql="SELECT lm.txtLotteryname AS Lotterymaster, COUNT(ut.id)  AS Unitsold FROM tbllotterymaster lm JOIN tblunit ut ON ut.refLotterymaster = lm.id GROUP BY lm.txtLotteryname HAVING Unitsold > 1";
-
-  con.query(sql, (err, result) => {
-    if(err) throw err;
+    if (err) throw err;
     console.log(result);
     res.send(result);
-})
-})
+  });
+});
+
+app.post("/Delete", (req, res) => {
+  let sql = "UPDATE tblunit SET txtDeleteflag=1 where id=" + req.body.id + ";";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
+// app.post("/Numbers", (req, res) => {
+//   let sql =
+//     "select id, txtFirstchoicenumber, txtSecondchoicenumber, txtThirdchoicenumber, txtFourthchoicenumber, txtFifthoicenumber from tblresultmaster;";
+//   con.query(sql, (err, result) => {
+//     if (err) throw err;
+//     console.log(result);
+//     res.send(result);
+//   });
+// });
+
+app.post("/Lotterylist", (req, res) => {
+  // let id=req.body.id;
+  // let sql="SELECT lm.txtLotteryname , count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
+  let sql =
+    "SELECT lm.txtLotteryname AS Lotterymaster, COUNT(ut.id)  AS Unitsold FROM tbllotterymaster lm JOIN tblunit ut ON ut.refLotterymaster = lm.id GROUP BY lm.txtLotteryname HAVING Unitsold > 1";
+
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
 
 app.listen(8080, (err) => {
   if (err) throw err;
