@@ -136,15 +136,25 @@ app.post("/confirmuser", (req, res) => {
 
 app.post("/drawticket", (req, res) => {
   let sql =
-    "SELECT txtLotteryname,dtLotterydrawdate FROM tbllotterymaster WHERE dtLotterydrawdate > NOW()  ORDER BY dtLotterydrawdate LIMIT 1; ";
+    "SELECT txtLotteryname, date_format( dtLotterydrawdate,'%y-%m-%d') as drawdate FROM tbllotterymaster WHERE dtLotterydrawdate > NOW()ORDER BY dtLotterydrawdate LIMIT 1; ";
   con.query(sql, (err, result) => {
     res.send(result);
+    console.log(result);
   });
 });
 
 app.post("/unitcheckout", (req, res) => {
   let sql =
     "SELECT tblunit.id as id ,tbllotterymaster.txtLotteryname as Lotteryname,DATE_FORMAT(tbllotterymaster.dtLotterydrawdate,'%M- %d-%Y')as Drawdate,tblunit.txtFirstchoicenumber as Firstnumber,tblunit.txtSecondchoicenumber as Secondnumber,tblunit.txtThirdchoicenumber as Thirdnumber,tblunit.txtFourthchoicenumber as Fourthnumber,tblunit.txtFifthoicenumber as Fifthnumber,tbllotterymaster.txtCost as Price FROM tbllotterymaster JOIN tblunit on tbllotterymaster.id=tblunit.refLotterymaster JOIN tblusers on tblusers.id=tblunit.refUser where tblusers.id=1 and tblunit.txtDeleteflag=0";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+app.post("/checkouttotal", (req, res) => {
+  let sql =
+    "SELECT tblunit.id as id,sum(tbllotterymaster.txtCost) as Totalcost FROM tbllotterymaster JOIN tblunit on tbllotterymaster.id=tblunit.refLotterymaster JOIN tblusers on tblusers.id=tblunit.refUser where tblusers.id=1 and tblunit.txtDeleteflag=0";
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
@@ -213,7 +223,6 @@ app.post("/unitdelete", (req, res) => {
     res.send(result);
   });
 });
-
 
 app.post("/Lotterylist", (req, res) => {
   // let id=req.body.id;
