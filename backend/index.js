@@ -303,6 +303,74 @@ app.post("/Lotterylist", (req, res) => {
     res.send(result);
   });
 });
+
+//--------------winner------------------//
+
+app.post("/winners", (req, res) => {
+  var sql ="select count(id) as winnners from tblunit;"
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
+//---------------linemessageapi---------------//
+
+app.post("/tickets", (req, res) => {
+    var iduser=req.body.userid;
+    var sql ="select count(id) as number from tblunit where txtPurchaseddate=curdate() && refUser='"+iduser+"';"
+    console.log(sql)
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+    });
+  });
+
+//------------------userprofileedit---------------//
+
+app.post("/profile", (req, res) => {
+  let userid = req.body.userid;
+  var sql ="select TU.id,TU.txtFname,TU.txtLname,TU.txtUemail,TU.txtUphoneno,TU.txtaddress,TS.txtStatename,TD.txtDistrict,TC.txtCountryname from tblusers TU join tbldistrict TD on TU.refDistrict=TD.id join tblstate TS on TU.refState=TS.id join tblcountry TC on TS.refCountryid=TC.id where tu.id='"+userid+"';"
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
+app.post("/fetchcity",(req,res)=>{
+  var sql="SELECT TD.id,TD.txtDistrict FROM tbldistrict TD;"
+  con.query(sql,function(err,result){
+    if(err) throw err;
+    res.send(result);
+  });
+});
+
+
+
+//-----------------userpasswordedit--------------//
+
+app.post("/updatepassword",(req,res)=>{
+  let userid=req.body.userid;
+  let newpassword=req.body.password;
+  var sql="update tblusers set txtUpassword='"+newpassword+"' where tblusers.id='"+userid+"';"
+  con.query(sql,function(err,result){
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+app.post("/showpassword",(req,res)=>{
+  let userid=req.body.userid;
+  var sql="select TU.id,TU.txtUpassword from tblusers TU where  TU.id='"+userid+"';"
+  con.query(sql,function(err,result){
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
 app.listen(8080, (err) => {
   if (err) throw err;
   console.log("Server running in port 8080");
