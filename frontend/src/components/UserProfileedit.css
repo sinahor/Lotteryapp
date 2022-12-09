@@ -69,3 +69,29 @@
     font-weight: 400;
     font-size: large;
 }
+.UserProfileedit_body_raw1_clmn1 select,.UserProfileedit_body_raw1_clmn2 select{
+    border-radius: 5px;
+    /* border-color: rgba(30, 143, 255, 0.637); */
+    padding: 7px;
+    border: 2px solid  rgba(30, 143, 255, 0.637);
+
+}
+.UserProfileedit_body_raw4{
+    display: flex;
+    justify-content: right;
+    padding: 10px;
+    margin-top: 20px;
+}
+.UserProfileedit_body_raw4_btn{
+    width: 50%;
+    display: flex;
+    justify-content: right;
+}
+.UserProfileedit_body_raw4_btn button{
+    background-color: rgba(3, 99, 3, 0.647);
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    border-style: none;
+    width: 50%;
+}
