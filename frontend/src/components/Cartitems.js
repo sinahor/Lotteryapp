@@ -1,6 +1,5 @@
 import "./Cartitems.css";
-import editicon from "../images/editicon.png";
-import bottle from "../images/bottle.jpg";
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 

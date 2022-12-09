@@ -1,0 +1,25 @@
+.AdminDashboard_outer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.AdminDashboard_headerUser {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.AdminDashboard_filterbar {
+    /* background-color: red; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.AdminDashboard_footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

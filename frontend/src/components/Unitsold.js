@@ -33,8 +33,7 @@ export default function Unitsold(){
 return(
     <>
     
-    Test
-    
+      
     <List  label1={"Lottery"} label2={"Drawdate"} label3={"Unitsold"} array={array}/>
 
     </>

@@ -152,6 +152,14 @@ app.post("/unitcheckout", (req, res) => {
     res.send(result);
   });
 });
+app.post("/unitdelete", (req, res) => {
+  let sql = "UPDATE tblunit SET txtDeleteflag=1 where id=" + req.body.id + ";";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
 app.post("/checkouttotal", (req, res) => {
   let sql =
     "SELECT tblunit.id as id,sum(tbllotterymaster.txtCost) as Totalcost FROM tbllotterymaster JOIN tblunit on tbllotterymaster.id=tblunit.refLotterymaster JOIN tblusers on tblusers.id=tblunit.refUser where tblusers.id=1 and tblunit.txtDeleteflag=0";
@@ -163,10 +171,80 @@ app.post("/checkouttotal", (req, res) => {
 });
 
 app.post("/Unitsold", (req, res) => {
-  // let id=req.body.id;
-  // let sql="SELECT lm.txtLotteryname ,lm.dtLotterydrawdate as DrawDate, count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
   let sql =
-    "SELECT lm.txtLotteryname AS Lotterymaster, lm.dtLotterydrawdate as DrawDate,COUNT(ut.id)  AS Unitsold FROM tbllotterymaster lm JOIN tblunit ut ON ut.refLotterymaster = lm.id GROUP BY lm.txtLotteryname HAVING Unitsold > 1";
+    "SELECT lm.txtLotteryname AS Lotterymaster,DATE_FORMAT(lm.dtLotterydrawdate,'%M-%d-%Y') AS DrawDate,COUNT(ut.id) AS Unitsold FROM tbllotterymaster lm JOIN tblunit ut ON ut.refLotterymaster = lm.id where  ut.txtDeleteflag = 0 GROUP BY lm.txtLotteryname having Unitsold>1";
+
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+app.post("/Unitlist", (req, res) => {
+  let sql =
+    "SELECT tblunit.id AS Unitid,CONCAT(tblusers.txtFname ,' ',tblusers.txtLname) AS Name,tblusers.txtUemail as Email,tblunit.txtFirstchoicenumber AS Firstnumber,tblunit.txtSecondchoicenumber AS Secondnumber,tblunit.txtThirdchoicenumber AS Thirdnumber,tblunit.txtFourthchoicenumber AS Fourthnumber,tblunit.txtFifthoicenumber AS Fifthnumber,tbllotterymaster.txtLotteryname as Lotteryname,DATE_FORMAT(tblunit.txtPurchaseddate, '%M %d %Y') as datepurchased,tblunit.txtDeleteflag as unconfirmedunits,tblunit.dtUpdatedOn FROM tbllotterymaster JOIN tblunit ON tbllotterymaster.id = tblunit.refLotterymaster JOIN tblusers ON tblunit.refUser = tblusers.id where tblunit.dtUpdatedOn=0 order by datepurchased desc";
+
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
+app.post("/Unitpasstolottery", (req, res) => {
+  let sql = "UPDATE tblunit SET dtUpdatedOn = 1 WHERE tblunit.id=1";
+
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+app.post("/addlottery", (req, res) => {
+  let lotteryname = req.body.lotteryname;
+  let drawdate = req.body.drawdate;
+  let lotteryprize = req.body.lotteryprize;
+  let ticketcost = req.body.ticketcost;
+  let userid = req.body.userid;
+
+  console.log(req.body);
+  let sql =
+    "insert into tbllotterymaster (txtLotteryname,dtLotterydrawdate,txtLotteryprize,txtCost,txtCreatedBy,txtCreatedOn) values('" +
+    lotteryname +
+    "','" +
+    drawdate +
+    "'," +
+    lotteryprize +
+    "," +
+    ticketcost +
+    ",'admin',curdate())";
+
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
+app.post("/lotteryfetch", (req, res) => {
+  console.log(req.body);
+  let sql =
+    "select id, txtLotteryname as lotteryname ,date_format(dtLotterydrawdate,'%y-%m-%d') as drawdate,txtLotteryprize as Prizemoney ,txtUpdatedBy,dtUpdatedOn,txtDeleteflag  from tbllotterymaster where txtDeleteflag =0";
+
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+app.post("/lotterydelete", (req, res) => {
+  let id = req.body.id;
+  // let userid = req.body.userid;
+  console.log(req.body);
+  let sql =
+    "UPDATE tbllotterymaster SET txtDeleteflag = 1,txtUpdatedBy = 'admin',dtUpdatedOn = CURDATE() WHERE tbllotterymaster.id = '" +
+    id +
+    "'";
 
   con.query(sql, (err, result) => {
     if (err) throw err;
@@ -215,18 +293,7 @@ app.post("/viewbank", (req, res) => {
   });
 });
 
-app.post("/unitdelete", (req, res) => {
-  let sql = "UPDATE tblunit SET txtDeleteflag=1 where id=" + req.body.id + ";";
-  con.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log(result);
-    res.send(result);
-  });
-});
-
 app.post("/Lotterylist", (req, res) => {
-  // let id=req.body.id;
-  // let sql="SELECT lm.txtLotteryname , count(ut.id) as units  FROM tblunit ut JOIN tbllotterymaster lm ON ut.refLotterymaster = lm.id WHERE lm.id ='"+ id + "'";
   let sql =
     "SELECT lm.txtLotteryname AS Lotterymaster, COUNT(ut.id)  AS Unitsold FROM tbllotterymaster lm JOIN tblunit ut ON ut.refLotterymaster = lm.id GROUP BY lm.txtLotteryname HAVING Unitsold > 1";
 
