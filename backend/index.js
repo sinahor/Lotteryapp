@@ -371,6 +371,17 @@ app.post("/showpassword",(req,res)=>{
     res.send(result);
   });
 });
+
+app.post("/userunitfetch",(req,res)=>{
+  let fetchid=req.body.fetchid;
+  var sql="SELECT tblunit.txtLotteryNumber, tbllotterymaster.txtLotteryname, tblusers.txtFname, tblresultmaster.txtFirstchoicenumber AS winno1, tblresultmaster.txtSecondchoicenumber AS winno2, tblresultmaster.txtThirdchoicenumber AS winno3, tblresultmaster.txtFourthchoicenumber AS winno4, tblresultmaster.txtFifthoicenumber AS winno5, txtProvidername FROM tblusers LEFT JOIN tblunit ON tblusers.id = tblunit.refUser LEFT JOIN tbllotterymaster ON tblunit.refLotterymaster = tbllotterymaster.id LEFT JOIN tblresultmaster ON tblresultmaster.refLotterymaster = tbllotterymaster.id LEFT JOIN tblprovider ON tbllotterymaster.refProvider = tblprovider.id WHERE tblusers.id = '1';";
+  con.query(sql,function(err,result){
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
 app.listen(8080, (err) => {
   if (err) throw err;
   console.log("Server running in port 8080");

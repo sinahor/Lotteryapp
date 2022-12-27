@@ -10,6 +10,8 @@ import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import Checkout from "./pages/Checkout";
 import TicketSelector from "./pages/TicketSelector";
+import Userdetails from "./pages/Userdetails";
+
 export default function Navigation() {
   return (
     <BrowserRouter>
@@ -24,6 +26,7 @@ export default function Navigation() {
         <Route path="/UserPage" element={<UserPage />}></Route>
         <Route path="/Checkout" element={<Checkout />}></Route>
         <Route path="/TicketSelector" element={<TicketSelector />}></Route>
+        <Route path="/UserDetails" element={<Userdetails/>}></Route>
       </Routes>
     </BrowserRouter>
   );
