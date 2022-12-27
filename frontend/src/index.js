@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Navigation from './pages/HomePage';
+import Navigation from './Navigation';
 
 
 

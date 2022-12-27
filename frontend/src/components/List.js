@@ -1,27 +1,36 @@
 import "./List.css";
-export default function List({ label1, label2, label3, array }) {
-    return (
-        <div className="list">
-            <table className="list_table">
-                <tr className="list_table_row1">
-                    <th className="list_table_row1_clm1">{label1}</th>
-                    <th className="list_table_row1_clm2">{label2}</th>
-                    <th className="list_table_row1_clm4">{label3}</th>
-                </tr>
-                {array.map((item, index) => {
-                    return (
-                        <>
-                            <tr>
-                                <td>{item.Lotterymaster}</td>
-                                <td>{item.DrawDate}</td>
-                                <td>{item.Unitsold}</td>
-                                {/* <td><span>{item[value4]}</span></td> */}
-                            </tr>
-                        </>
-                    );
-                })}
-
-            </table>
-        </div>
-    );
+import { useNavigate } from "react-router-dom";
+export default function List({ label1, label2, label3, array,variable1,variable2,variable3}) {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/AdminLotteryManager");
+  };
+  return (
+    <div className="list_outer">
+      <div className="list_outer_header">
+        <p>{label1}</p>
+        <p>{label2}</p>
+        <p>{label3}</p>
+      </div>
+      {array.map((item, index) => {
+        return (
+          <>
+            <div className="list_outer_row">
+              <p>{item[variable1]}</p>
+              <p>{item[variable2]}</p>
+              <p>{item[variable3]}</p>
+              {/* <td><span>{item[value4]}</span></td> */}
+            </div>
+          </>
+        );
+      })}
+      <button
+        onClick={() => {
+          handleClick();
+        }}
+      >
+        Proceed to Lottery Manager
+      </button>
+    </div>
+  );
 }
