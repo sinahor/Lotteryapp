@@ -6,6 +6,7 @@ var cors = require("cors");
 app.use(cors());
 const otpGenerator = require("otp-generator");
 var nodemailer = require("nodemailer");
+const { response } = require("express");
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -374,7 +375,16 @@ app.post("/showpassword",(req,res)=>{
 
 app.post("/userunitfetch",(req,res)=>{
   let fetchid=req.body.fetchid;
-  var sql="SELECT tblunit.txtLotteryNumber, tbllotterymaster.txtLotteryname, tblusers.txtFname, tblresultmaster.txtFirstchoicenumber AS winno1, tblresultmaster.txtSecondchoicenumber AS winno2, tblresultmaster.txtThirdchoicenumber AS winno3, tblresultmaster.txtFourthchoicenumber AS winno4, tblresultmaster.txtFifthoicenumber AS winno5, txtProvidername FROM tblusers LEFT JOIN tblunit ON tblusers.id = tblunit.refUser LEFT JOIN tbllotterymaster ON tblunit.refLotterymaster = tbllotterymaster.id LEFT JOIN tblresultmaster ON tblresultmaster.refLotterymaster = tbllotterymaster.id LEFT JOIN tblprovider ON tbllotterymaster.refProvider = tblprovider.id WHERE tblusers.id = '1';";
+  var sql="select tblresultmap.id as resultid, tbllotterymaster.txtLotteryName, date_format(tbllotterymaster.dtLotterydrawdate, '%Y-%m-%d') as DrawDate, tblusers.id as userid, sum(tblresultmap.txtPrizemoney) as TotalPrize, tblprovider.txtProvidername from tblresultmap join tblunit on tblresultmap.refUnitid = tblunit.id join tblusers on tblunit.refUser = tblusers.id join tbllotterymaster on tblunit.refLotterymaster = tbllotterymaster.id join tblprovider on tbllotterymaster.refProvider = tblprovider.id where tblusers.id='3' group by tbllotterymaster.txtLotteryname; ";
+  con.query(sql,function(err,result){
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
+app.post("/userwinningtodatefetch", (req,res) => {
+  var sql = "select tblresultmap.id, tblprovider.txtProvidername, tblusers.id as userid, sum(tblresultmap.txtPrizemoney) as ProviderTotal from tblresultmap join tblunit on tblresultmap.refUnitid = tblunit.id join tbllotterymaster on tblunit.refLotterymaster = tbllotterymaster.id join tblusers on tblunit.refUser = tblusers.id join tblprovider on tbllotterymaster.refProvider = tblprovider.id where tblusers.id='3' group by tblprovider.txtProvidername";
   con.query(sql,function(err,result){
     if(err) throw err;
     console.log(result);

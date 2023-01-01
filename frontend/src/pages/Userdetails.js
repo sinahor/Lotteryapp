@@ -26,6 +26,23 @@ export default function Userdetails() {
             });
     }, []);
 
+    const [fetchwinningstodate, setFetchwinningstodate] = useState([]);
+
+    useEffect(() => {
+        let url = "http://localhost:8080/userwinningtodatefetch";
+        let request = {};
+        let header = {};
+        axios
+            .post(url, request, header)
+            .then((res) => {
+                console.log(res.data);
+                setFetchwinningstodate(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
     return (
         <div className="Userdetails_container">
             <div className="Userdetails_headerUser">
@@ -41,23 +58,27 @@ export default function Userdetails() {
             <div className="Userdetails_unitdetails">
                 <Unitdetails
                     label1={"Lotteryname"}
-                    label2={"Prize Numbers"}
+                    label2={"Draw Date"}
                     label3={"Prize won"}
                     array={fetchuserdetails}
-                    variable1={"txtLotteryname"}
-                    variable2={"txtFirstchoicenumber"}
-                    variable3={"txtSecondchoicenumber"}
+                    variable1={"txtLotteryName"}
+                    variable2={"DrawDate"}
+                    variable3={"TotalPrize"}
                 />
+                
+                
+                
             </div>
 
             <div className="Userdetails_providerandprizedetails">
                 <Providerandprizedetails
                     label1={"Lottery provider"}
                     label2={"Total prizes won until now"} 
-                    array={fetchuserdetails}
+                    array={fetchwinningstodate}
                     variable1={"txtProvidername"}
-                    variable2={"txtFirstchoicenumber"}
+                    variable2={"ProviderTotal"}
                 />
+                
             </div>
 
             <div className="Userdetails_footer">
