@@ -392,6 +392,24 @@ app.post("/userwinningtodatefetch", (req,res) => {
   });
 });
 
+app.post("/userwinningvalidationfetch", (req,res) => {
+  var sql = "select tblresultmap.id, tbllotterymaster.txtLotteryname, date_format(tbllotterymaster.txtCreatedOn, '%Y-%m-%d') as EntryDate, tblusers.id, tblresultmap.txtMatchingcount, tblresultmap.txtPrizemoney from tblresultmap join tblunit on tblresultmap.refUnitid = tblunit.id join tbllotterymaster on tblunit.refLotterymaster = tbllotterymaster.id join tblusers on tblunit.refUser = tblusers.id where tblusers.id='3' ;";
+  con.query(sql,function(err,result){
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
+app.post("/providerlotterynamewinnings", (req,res) => {
+  var sql = "select tblresultmap.id as resultid, tbllotterymaster.txtLotteryName, date_format(tbllotterymaster.txtCreatedOn, '%Y-%m-%d') as EntryDate, tblusers.id as userid, tblresultmap.txtPrizemoney as TotalPrize, tblprovider.txtProvidername from tblresultmap join tblunit on tblresultmap.refUnitid = tblunit.id join tblusers on tblunit.refUser = tblusers.id join tbllotterymaster on tblunit.refLotterymaster = tbllotterymaster.id join tblprovider on tbllotterymaster.refProvider = tblprovider.id where tblusers.id='3';";
+  con.query(sql,function(err,result){
+    if(err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
 app.listen(8080, (err) => {
   if (err) throw err;
   console.log("Server running in port 8080");
